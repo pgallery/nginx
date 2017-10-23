@@ -32,7 +32,7 @@ else
     sed -i \
         -e "s/FPM_HOST/${FPM_HOST}/g" \
         -e "s/FPM_PORT/${FPM_PORT}/g" \
-        /etc/nginx/conf.d/default.conf
+        /etc/nginx/conf.d/default-ssl.conf
 
 fi
 
