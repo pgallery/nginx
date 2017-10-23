@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y wget ca-certificates apt-transport-http
     && apt-get update && apt-get -y upgrade \
     && apt-get install -y ssl-cert supervisor python-certbot-nginx procps \
     && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean \
+    && apt-get clean
 
 COPY config/nginx.conf 			/etc/nginx/nginx.conf
 COPY config/nginx-vhost.conf 		/etc/nginx/conf.d/default.conf
