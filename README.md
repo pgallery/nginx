@@ -23,6 +23,8 @@ sudo docker run -d -p 80:80 -p 443:443 \
     -v /home/username/sitename/www/:/var/www/html/ \
     -v /home/username/sitename/logs/:/var/log/nginx/ \
     -e 'TIMEZONE=Europe/Moscow' \
+    -e 'FPM_HOST=phpfpm' \
+    -e 'FPM_PORT=9000' \
     pgallery/nginx
 ```
 
