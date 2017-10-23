@@ -2,7 +2,7 @@ FROM nginx:latest
 
 LABEL maintainer="Ruzhentsev Alexandr <git@pgallery.ru>"
 LABEL version="1.0 beta"
-LABEL description="Для тестовых нужд."
+LABEL description="Nginx image for pGallery"
 
 RUN apt-get update && apt-get install -y wget ca-certificates apt-transport-https \
     && apt-get update && apt-get -y upgrade \
