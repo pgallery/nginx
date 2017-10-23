@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -z "$SSL_DOMAIN" ]; then
+
+    echo "You need the SSL_DOMAIN variables"
+
+else
+
+    IFS=',' read -r -a domains <<< "$SSL_DOMAIN"
+
+    if [ -f /etc/letsencrypt/live/${domains[0]}/fullchain.pem ]; then
+
+        /usr/bin/certbot renew --dry-run
+        /usr/bin/supervisorctl restart nginx
+
+    else
+
+        echo "Certificate can not be found"
+
+    fi
+fi
