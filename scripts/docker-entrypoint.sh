@@ -5,7 +5,7 @@ set -e
 TIMEZONE=${TIMEZONE:-Europe/Moscow}
 FPM_HOST=${FPM_HOST:-phpfpm}
 FPM_PORT=${FPM_PORT:-9000}
-NGINX_WORKERS=${NGINX_WORKERS:2}
+NGINX_WORKERS=${NGINX_WORKERS:-2}
 
 # set timezone
 ln -snf /usr/share/zoneinfo/${PHP_TIMEZONE} /etc/localtime
@@ -58,6 +58,9 @@ else
 fi
 
 if [ ! -f /etc/nginx/ssl/dhparam.pem ]; then
+    if [ ! -d /etc/nginx/ssl/ ]; then
+	mkdir /etc/nginx/ssl/
+    fi
     openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 fi
 
