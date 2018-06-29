@@ -5,6 +5,7 @@ set -e
 TIMEZONE=${TIMEZONE:-Europe/Moscow}
 FPM_HOST=${FPM_HOST:-phpfpm}
 FPM_PORT=${FPM_PORT:-9000}
+NGINX_WORKERS=${NGINX_WORKERS:2}
 
 # set timezone
 ln -snf /usr/share/zoneinfo/${PHP_TIMEZONE} /etc/localtime
@@ -12,6 +13,12 @@ dpkg-reconfigure -f noninteractive tzdata
 
 if [ -f /var/www/html/config/nginx/nginx.conf ]; then
     cp /var/www/html/config/nginx/nginx.conf /etc/nginx/nginx.conf
+else
+
+    sed -i \
+        -e "s/NGINX_WORKERS/${NGINX_WORKERS}/g" \
+        /etc/nginx/nginx.conf
+
 fi
 
 if [ -f /var/www/html/config/nginx/nginx-vhost.conf ]; then
@@ -50,8 +57,8 @@ else
 
 fi
 
-if [ ! -f /etc/nginx/dhparam.pem ]; then
-    openssl dhparam -out /etc/nginx/dhparam.pem 2048
+if [ ! -f /etc/nginx/ssl/dhparam.pem ]; then
+    openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 fi
 
 /usr/bin/supervisord -n -c /etc/supervisord.conf
