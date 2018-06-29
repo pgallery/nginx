@@ -50,6 +50,10 @@ else
 
 fi
 
+if [ ! -f /etc/nginx/dhparam.pem ]; then
+    openssl dhparam -out /etc/nginx/dhparam.pem 2048
+fi
+
 /usr/bin/supervisord -n -c /etc/supervisord.conf
 
 exec "$@"
