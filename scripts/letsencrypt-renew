@@ -10,8 +10,11 @@ else
 
     if [ -f /etc/letsencrypt/live/${domains[0]}/fullchain.pem ]; then
 
-        /usr/bin/certbot renew
-        /usr/bin/supervisorctl restart nginx
+	/usr/bin/certbot renew
+
+	if [ $? -eq 0 ]; then 
+	    /usr/bin/supervisorctl restart nginx
+	fi
 
     else
 
