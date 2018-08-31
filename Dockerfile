@@ -1,7 +1,7 @@
 FROM nginx:latest
 
 LABEL maintainer="Ruzhentsev Alexandr <git@pgallery.ru>"
-LABEL version="1.0 beta"
+LABEL version="1.1"
 LABEL description="Docker image Nginx for pGallery"
 
 RUN apt-get update && apt-get install -y wget ca-certificates apt-transport-https \

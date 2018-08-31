@@ -61,7 +61,7 @@ if [ ! -f /etc/nginx/ssl/dhparam.pem ]; then
     if [ ! -d /etc/nginx/ssl/ ]; then
 	mkdir /etc/nginx/ssl/
     fi
-    openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
+    openssl dhparam -out /etc/nginx/ssl/dhparam.pem 4096
 fi
 
 /usr/bin/supervisord -n -c /etc/supervisord.conf
